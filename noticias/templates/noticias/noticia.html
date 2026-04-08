@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ noticia.titulo }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .noticia {
+            margin-top: 20px;
+        }
+        .titulo {
+            color: #333;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+        }
+        .data {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 20px;
+        }
+        .conteudo {
+            line-height: 1.6;
+            font-size: 1.1em;
+        }
+        .voltar {
+            margin-top: 30px;
+            display: inline-block;
+            color: #0066cc;
+            text-decoration: none;
+        }
+        .voltar:hover {
+            text-decoration: underline;
+        }
+        
+        /* Estilos para comentários */
+        .comentarios {
+            margin-top: 50px;
+            border-top: 2px solid #ddd;
+            padding-top: 30px;
+        }
+        .comentarios h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .comentario {
+            background: #f9f9f9;
+            border-left: 4px solid #0066cc;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .comentario-autor {
+            font-weight: bold;
+            color: #0066cc;
+            margin-bottom: 5px;
+        }
+        .comentario-data {
+            font-size: 0.8em;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        .comentario-texto {
+            line-height: 1.4;
+            color: #333;
+        }
+        .sem-comentarios {
+            color: #666;
+            font-style: italic;
+        }
+        
+        /* Estilos do formulário */
+        .form-comentario {
+            margin-top: 30px;
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .form-comentario h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        .form-control {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: Arial, sans-serif;
+        }
+        textarea.form-control {
+            resize: vertical;
+        }
+        .btn-submit {
+            background: #0066cc;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .btn-submit:hover {
+            background: #0052a3;
+        }
+    </style>
+</head>
+<body>
+    <div class="noticia">
+        <h1 class="titulo">{{ noticia.titulo }}</h1>
+        <div class="data">
+            Publicado em: {{ noticia.data_publicacao|date:"d/m/Y H:i" }}
+        </div>
+        <div class="conteudo">
+            {{ noticia.conteudo|linebreaks }}
+        </div>
+        
+        <!-- SEÇÃO DE COMENTÁRIOS -->
+        <div class="comentarios">
+            <h2>Comentários ({{ comentarios|length }})</h2>
+            
+            {% if comentarios %}
+                {% for comentario in comentarios %}
+                    <div class="comentario">
+                        <div class="comentario-autor">{{ comentario.autor }}</div>
+                        <div class="comentario-data">{{ comentario.data_criacao|date:"d/m/Y H:i" }}</div>
+                        <div class="comentario-texto">{{ comentario.texto|linebreaks }}</div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p class="sem-comentarios">Nenhum comentário ainda. Seja o primeiro a comentar!</p>
+            {% endif %}
+            
+            <!-- FORMULÁRIO PARA NOVO COMENTÁRIO -->
+            <div class="form-comentario">
+                <h3>Deixe seu comentário</h3>
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="{{ form.autor.id_for_label }}">Nome:</label>
+                        {{ form.autor }}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.texto.id_for_label }}">Comentário:</label>
+                        {{ form.texto }}
+                    </div>
+                    <button type="submit" class="btn-submit">Enviar Comentário</button>
+                </form>
+            </div>
+        </div>
+        
+        <a href="/" class="voltar">← Voltar para lista de notícias</a>
+    </div>
+</body>
+</html>

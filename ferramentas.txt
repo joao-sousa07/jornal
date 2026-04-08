@@ -1,0 +1,100 @@
+FERRAMENTAS UTILIZADAS NO PROJETO JORNAL DIÁRIO
+=================================================
+
+DATA: 08/04/2026
+
+1. LINGUAGENS E FRAMEWORKS
+---------------------------
+- Python 3.14.3
+- Django 6.0.4
+- HTML5
+- CSS3
+- SQL (SQLite)
+
+2. BIBLIOTECAS DO DJANGO UTILIZADAS
+------------------------------------
+- django.db.models (Modelos de banco de dados)
+- django.shortcuts (render, get_object_or_404, redirect)
+- django.views (Views)
+- django.urls (Rotas)
+- django.forms (Formulários)
+- django.template (Templates HTML)
+- django.contrib.auth (Autenticação - opcional)
+- django.contrib.admin (Admin panel)
+
+3. FERRAMENTAS DE DESENVOLVIMENTO
+----------------------------------
+- Visual Studio Code (Editor de código)
+- Git (Controle de versão)
+- GitHub (Repositório remoto)
+- Windows Terminal (Terminal)
+- SQLite Browser (Visualização do banco - opcional)
+
+4. DEPENDÊNCIAS (requirements.txt)
+-----------------------------------
+Django==6.0.4
+sqlite3 (já incluso no Python)
+
+5. COMANDOS IMPORTANTES UTILIZADOS
+-----------------------------------
+- python manage.py runserver (Iniciar servidor)
+- python manage.py startapp noticias (Criar app)
+- python manage.py makemigrations (Criar migrações)
+- python manage.py migrate (Aplicar migrações)
+- python manage.py createsuperuser (Criar admin)
+- python manage.py shell (Shell interativo)
+
+6. ESTRUTURA DO PROJETO
+------------------------
+jornal/
+├── jornal/               # Configurações
+│   ├── settings.py       # Configurações do Django
+│   ├── urls.py          # URLs principais
+│   └── wsgi.py          # Deploy
+├── noticias/             # App principal
+│   ├── migrations/      # Migrações do banco
+│   ├── templates/       # Templates HTML
+│   │   └── noticias/    # Templates do app
+│   ├── __init__.py
+│   ├── admin.py         # Admin panel
+│   ├── models.py        # Modelos (Noticia, Comentario)
+│   ├── views.py         # Views (lista_noticias, detalhe_noticia)
+│   ├── urls.py          # URLs do app
+│   └── forms.py         # Formulários (ComentarioForm)
+├── db.sqlite3           # Banco de dados
+├── manage.py            # Gerenciador
+├── .gitignore           # Arquivos ignorados no Git
+└── README.md            # Documentação
+
+7. MODELOS CRIADOS
+-------------------
+- Noticia (título, conteúdo, data)
+- Comentario (noticia, autor, texto, data_criacao)
+
+8. TEMPLATES CRIADOS
+--------------------
+- lista.html (Listagem de notícias)
+- noticia.html (Detalhe da notícia + comentários)
+
+9. FUNCIONALIDADES IMPLEMENTADAS
+---------------------------------
+✓ Listar todas as notícias
+✓ Ver detalhes de uma notícia
+✓ Adicionar comentários
+✓ Contar comentários por notícia
+✓ Formatação de datas
+✓ Resumo de textos nas listagens
+
+10. PRÓXIMOS PASSOS (SUGESTÕES)
+--------------------------------
+- Adicionar autenticação de usuários
+- Permitir edição/deleção de comentários
+- Adicionar categorias de notícias
+- Implementar busca de notícias
+- Adicionar paginação
+- Melhorar o design com Bootstrap
+- Adicionar imagens nas notícias
+
+=================================================
+Desenvolvedor: João
+=================================================

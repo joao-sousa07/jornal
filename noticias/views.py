@@ -1,26 +1,29 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Noticia, Comentario
+from .forms import ComentarioForm
 
 def lista_noticias(request):
     noticias = Noticia.objects.all()
-    return render(request, 'lista.html', {'noticias': noticias})
-
+    # Agora aponta para a subpasta noticias/
+    return render(request, 'noticias/lista.html', {'noticias': noticias})
 
 def detalhe_noticia(request, id):
     noticia = get_object_or_404(Noticia, id=id)
-    return render(request, 'noticia.html', {'noticia': noticia})
-
-
-def comentarios(request, id):
-    noticia = get_object_or_404(Noticia, id=id)
-    comentarios = Comentario.objects.filter(noticia=noticia)
-
+    comentarios = noticia.comentarios.all()
+    
     if request.method == 'POST':
-        texto = request.POST.get('texto')
-        Comentario.objects.create(noticia=noticia, texto=texto)
-        return redirect('comentarios', id=noticia.id)
-
-    return render(request, 'comentarios.html', {
+        form = ComentarioForm(request.POST)
+        if form.is_valid():
+            comentario = form.save(commit=False)
+            comentario.noticia = noticia
+            comentario.save()
+            return redirect('detalhe_noticia', id=noticia.id)
+    else:
+        form = ComentarioForm()
+    
+    # Agora aponta para a subpasta noticias/
+    return render(request, 'noticias/noticia.html', {
         'noticia': noticia,
-        'comentarios': comentarios
+        'comentarios': comentarios,
+        'form': form
     })

@@ -2,12 +2,64 @@
 <html>
 <head>
     <title>Jornal Diário</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            border-bottom: 3px solid #0066cc;
+            padding-bottom: 10px;
+        }
+        .noticia {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .noticia h2 {
+            margin-top: 0;
+        }
+        .noticia h2 a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        .noticia h2 a:hover {
+            text-decoration: underline;
+        }
+        .conteudo {
+            color: #555;
+            line-height: 1.5;
+            margin: 10px 0;
+        }
+        .data {
+            color: #999;
+            font-size: 0.9em;
+            display: inline-block;
+        }
+        .comentarios-count {
+            color: #0066cc;
+            font-size: 0.9em;
+            margin-left: 15px;
+            display: inline-block;
+        }
+        hr {
+            border: none;
+            border-top: 1px solid #ddd;
+        }
+    </style>
 </head>
 <body>
-    <h1>Jornal Diário</h1>
+    <h1>📰 Jornal Diário</h1>
 
     {% for noticia in noticias %}
-        <div>
+        <div class="noticia">
             <!-- LINK para abrir a notícia -->
             <h2>
                 <a href="/noticia/{{ noticia.id }}/">
@@ -15,13 +67,25 @@
                 </a>
             </h2>
 
-            <!-- Conteúdo -->
-            <p>{{ noticia.conteudo }}</p>
+            <!-- Conteúdo resumido -->
+            <div class="conteudo">
+                {{ noticia.conteudo|truncatewords:30|linebreaks }}
+            </div>
 
-            <!-- Data (corrigido o nome) -->
-            <small>{{ noticia.data }}</small>
+            <!-- Data corrigida: agora usando "data" em vez de "data_publicacao" -->
+            <div class="data">
+                📅 {{ noticia.data|date:"d/m/Y H:i" }}
+            </div>
+
+            <!-- Contador de comentários -->
+            <div class="comentarios-count">
+                💬 {{ noticia.comentarios.count }} comentário(s)
+            </div>
         </div>
-        <hr>
+    {% empty %}
+        <p style="text-align: center; color: #999;">
+            Nenhuma notícia cadastrada ainda.
+        </p>
     {% endfor %}
 
 </body>
