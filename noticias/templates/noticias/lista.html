@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Jornal Diário</title>
+</head>
+<body>
+    <h1>Jornal Diário</h1>
+
+    {% for noticia in noticias %}
+        <div>
+            <h2>{{ noticia.titulo }}</h2>
+            <p>{{ noticia.conteudo }}</p>
+            <small>{{ noticia.data_publicacao }}</small>
+        </div>
+        <hr>
+    {% endfor %}
+</body>
+</html>
