@@ -8,11 +8,21 @@
 
     {% for noticia in noticias %}
         <div>
-            <h2>{{ noticia.titulo }}</h2>
+            <!-- LINK para abrir a notícia -->
+            <h2>
+                <a href="/noticia/{{ noticia.id }}/">
+                    {{ noticia.titulo }}
+                </a>
+            </h2>
+
+            <!-- Conteúdo -->
             <p>{{ noticia.conteudo }}</p>
-            <small>{{ noticia.data_publicacao }}</small>
+
+            <!-- Data (corrigido o nome) -->
+            <small>{{ noticia.data }}</small>
         </div>
         <hr>
     {% endfor %}
+
 </body>
 </html>
