@@ -76,25 +76,6 @@ jornal/
 - lista.html (Listagem de notícias)
 - noticia.html (Detalhe da notícia + comentários)
 
-9. FUNCIONALIDADES IMPLEMENTADAS
----------------------------------
-✓ Listar todas as notícias
-✓ Ver detalhes de uma notícia
-✓ Adicionar comentários
-✓ Contar comentários por notícia
-✓ Formatação de datas
-✓ Resumo de textos nas listagens
-
-10. PRÓXIMOS PASSOS (SUGESTÕES)
---------------------------------
-- Adicionar autenticação de usuários
-- Permitir edição/deleção de comentários
-- Adicionar categorias de notícias
-- Implementar busca de notícias
-- Adicionar paginação
-- Melhorar o design com Bootstrap
-- Adicionar imagens nas notícias
-
 =================================================
 Desenvolvedor: João
 =================================================
